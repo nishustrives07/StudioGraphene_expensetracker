@@ -1,0 +1,13 @@
+{
+  "name": "mini-expense-tracker-root",
+  "version": "1.0.0",
+  "description": "Mini Expense Tracker with React, Express, Tailwind CSS, and Recharts",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "npm install && npm install --prefix backend && npm install --prefix frontend --legacy-peer-deps",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
