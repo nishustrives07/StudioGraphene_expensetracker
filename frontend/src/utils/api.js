@@ -1,5 +1,4 @@
-const BASE_URL = 'http://localhost:5000/api';
-
+const BASE_URL = 'https://studiographene-expensetracker.onrender.com/api';
 /**
  * Standard utility wrapper for calling fetch.
  */
