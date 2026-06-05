@@ -1,0 +1,37 @@
+[
+  {
+    "id": "95cfb40e-1024-4159-a45e-95846c57bbb9",
+    "amount": 2000,
+    "category": "Food",
+    "date": "2026-06-04",
+    "note": ""
+  },
+  {
+    "id": "24c70240-fc14-44a1-8585-c870438f076a",
+    "amount": 100,
+    "category": "Transport",
+    "date": "2026-06-04",
+    "note": ""
+  },
+  {
+    "id": "e576038b-5b58-4c47-a6fb-49018e4435b6",
+    "amount": 2500,
+    "category": "Bills",
+    "date": "2026-06-04",
+    "note": ""
+  },
+  {
+    "id": "33682593-028a-4a00-ae4c-7a2fbaad5eb1",
+    "amount": 590,
+    "category": "Entertainment",
+    "date": "2026-06-04",
+    "note": ""
+  },
+  {
+    "id": "f026b74a-505e-4aec-96fa-6ca512a410aa",
+    "amount": 1000,
+    "category": "Other",
+    "date": "2026-06-04",
+    "note": ""
+  }
+]
