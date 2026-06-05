@@ -260,7 +260,7 @@ In alignment with professional transparency guidelines, I would like to declare 
 
 The AI was used to:
 - Scaffold the initial Vite and React template project structures.
-- Generate standard UI icons and layout configurations (buttons, layout columns, input boxes).
+
 - Implement standard boilerplates like the Express configuration and basic React component architectures.
 
 All core design patterns, validations, database layer choices (atomic JSON file writing), folder splits, and business logics were designed, reviewed, and finalized by me to ensure high security, data reliability, and performance.
