@@ -1,266 +1,357 @@
 # Mini Expense Tracker
 
-A full-stack, responsive web application that allows users to record daily expenditures across categories, establish monthly budgets, monitor progress through interactive charts, and export data as CSV files. 
+## Project Overview
 
-This project was built as a take-home assignment for Studio Graphene.
+This project is my submission for **Exercise 2 – Mini Expense Tracker** from the Studio Graphene Full Stack Developer Assessment.
 
----
+I chose this exercise because it gave me the opportunity to work on both frontend and backend development while also implementing filtering, analytics, charts, data persistence, and API development. I wanted to build something that feels like a real-world application instead of only basic CRUD operations.
 
-## 1. Project Description
-The **Mini Expense Tracker** provides a lightweight yet robust way to log daily spending, view summaries, track spending against monthly budgets, and visualize allocations. The system operates on a single-user model requiring no authentication, persisting transaction data directly to local JSON storage files on the backend.
-
-## 2. Why I Chose This Exercise
-During a previous internship, I had the opportunity to build the frontend interfaces and UI components for a dashboard-style expense tracker. While I enjoyed crafting the user interface, the backend was already pre-built, and I didn't get to design the APIs, data modeling, or persistence layer. 
-
-I chose this exercise because it gave me the perfect opportunity to build a **complete, full-stack version** of an expense tracker from scratch. Building both the Express API and the React frontend allowed me to design a cohesive architecture, implement clean validation pipelines across the boundary, and write a robust filesystem database layer.
+The application allows users to add, edit, delete, and filter expenses across different categories. Users can also set category-wise budgets, view spending summaries, visualize expenses through charts, and export expense data as CSV. The data is stored using JSON files so that expenses and budgets persist even after restarting the server.
 
 ---
 
-## 3. Features
+# Live Demo Links
 
-### Core Requirements
-- **CRUD Operations**: Complete capability to Add, View, Edit, and Delete expenses.
-- **Date-Sorted Timeline**: Expenses are listed in a table with the newest transactions shown first.
-- **Form Validations**: Standard validation checks on amount (must be positive > 0), date (no future dates allowed), and category (required dropdown selection).
-- **Global & Category Aggregations**:
-  - Total spent in the current calendar month.
-  - Highest single expense recorded of all time.
-  - Total monthly budget target combined.
-- **Quick Filtering**: Filter expenses instantly by category and/or date range preset (All Time, This Month, Last Month, or a Custom start/end date range selector).
-- **Visual Analytics**: Interactive Recharts Donut Pie chart displaying spending breakdown by category, updating dynamically to match the filtered state.
-- **Currency & Date Formatting**: Full compliance with Indian standard formatting, displaying amounts in INR (e.g. `₹1,234.50`) and local timezone-safe dates (e.g. `04 Jun 2026`).
+### Frontend
 
-### Bonus Enhancements
-- **Budget Alerts**: Exceeding the set budget limit for a category triggers a warning notification banner on the dashboard and colors its respective progress bar red.
-- **Budget Configuration**: Setting category-specific budgets from a dedicated settings card that persists on the backend.
-- **CSV Data Export**: Instant client-side download of the *currently filtered* list of expenses in standard CSV formatting.
+https://studio-graphene-expensetracker.vercel.app
+
+### Backend API
+
+https://studiographene-expensetracker.onrender.com
+
+### GitHub Repository
+
+https://github.com/nishustrives07/StudioGraphene_expensetracker
 
 ---
 
-## 4. Tech Stack
+# Tech Stack
 
-- **Frontend**:
-  - React (SPA Framework)
-  - Vite (Build Tool)
-  - Tailwind CSS v3 (Responsive Styling Utility)
-  - Recharts (Donut Pie Chart Rendering)
-  - Lucide React (UI Icons)
-- **Backend**:
-  - Node.js & Express (RESTful Web Server)
-  - CORS (Cross-Origin Resource Sharing Middleware)
-  - UUID (V4 Unique Identifier Generation)
-- **Database / Storage**:
-  - Local JSON File persistence (asynchronous filesystem operations with atomic temp-write swapping for data integrity).
+## Frontend
+
+* React (Vite)
+* Recharts
+* Lucide React
+* Tailwind CSS
+
+I used React because it makes UI development easier through reusable components. Recharts was used for visualizing spending data and Lucide React was used for icons.
+
+## Backend
+
+* Node.js
+* Express.js
+* UUID
+
+Express was used to build REST APIs and UUID is used to generate unique IDs for expenses.
+
+## Persistence
+
+* JSON files (`expenses.json` and `budgets.json`)
+
+I chose JSON file persistence because it was one of the options mentioned in the assignment and keeps the project lightweight without introducing database setup complexity.
+
+## Deployment
+
+* Vercel (Frontend)
+* Render (Backend)
+* GitHub (Version Control)
 
 ---
 
-## 5. Project Structure
+# Features
 
-The project separates the frontend and backend environments cleanly to mimic a production layout:
+### Expense Management
 
-```text
-StudioGraphene_expensetracker/
-├── package.json                   # Root package.json to manage concurrent runs
-├── README.md                      # Setup, architecture details & run instructions
-├── backend/
-│   ├── package.json
-│   ├── server.js                  # Express server startup entry
-│   ├── data/                      # JSON persistence database
-│   │   ├── expenses.json
-│   │   └── budgets.json
-│   ├── routes/                    # Route mappings
-│   │   ├── expenses.js
-│   │   └── budgets.js
-│   ├── controllers/               # Express request and response parsers
-│   │   ├── expenseController.js
-│   │   └── budgetController.js
-│   ├── services/                  # Business logic, validations & data transformations
-│   │   ├── expenseService.js
-│   │   └── budgetService.js
-│   └── utils/                     # Storage helpers
-│       └── storage.js
-└── frontend/
-    ├── package.json
-    ├── tailwind.config.js
-    ├── postcss.config.js
-    ├── vite.config.js
-    ├── index.html
-    └── src/
-        ├── main.jsx
-        ├── App.jsx                # Global state & filter logic coordinator
-        ├── index.css              # Styling imports and fade-in animations
-        ├── components/            # UI modular components
-        │   ├── Header.jsx
-        │   ├── SummaryPanel.jsx
-        │   ├── ExpenseForm.jsx
-        │   ├── BudgetSettings.jsx
-        │   ├── ChartsPanel.jsx
-        │   └── ExpenseList.jsx
-        └── utils/                 # Client utilities
-            ├── api.js             # Native fetch client wrappers
-            └── formatters.js      # Locale representation utilities
+* Add new expenses
+* Edit existing expenses
+* Delete expenses
+* Optional notes for expenses
+* Expenses sorted by newest date first
+
+### Filtering
+
+* Filter by category
+* Filter by date range:
+
+  * This Month
+  * Last Month
+  * Custom Range
+
+### Summary Dashboard
+
+* Total spent this month
+* Highest expense
+* Category-wise spending breakdown
+* Total monthly budget
+
+### Charts & Analytics
+
+* Expense distribution by category
+* Budget vs spending comparison
+* Interactive chart updates based on filters
+
+### Budget Tracking
+
+* Set category-wise budgets
+* Visual indication when spending exceeds budget
+
+### CSV Export
+
+* Export currently visible expenses as a CSV file
+
+### Validation
+
+* Prevent negative amounts
+* Prevent future dates
+* Category selection required
+
+---
+
+# How to Run Locally
+
+## Prerequisites
+
+Make sure Node.js is installed.
+
+## Clone the Repository
+
+```bash
+git clone https://github.com/nishustrives07/StudioGraphene_expensetracker.git
+
+cd StudioGraphene_expensetracker
 ```
 
----
+## Start Backend
 
-## 6. API Documentation
-
-All routes assume a base URL of `http://localhost:5000/api`.
-
-### Expenses API
-
-#### 1. Get All Expenses
-- **Endpoint**: `GET /expenses`
-- **Description**: Returns all saved expenses, ordered by date (newest first).
-- **Response** (`200 OK`):
-  ```json
-  [
-    {
-      "id": "c309b854-e69e-4f51-be2d-f018e2bb6cb8",
-      "amount": 2500,
-      "category": "Food",
-      "date": "2026-06-04",
-      "note": "Weekly groceries"
-    }
-  ]
-  ```
-
-#### 2. Create Expense
-- **Endpoint**: `POST /expenses`
-- **Request Body**:
-  ```json
-  {
-    "amount": 1250.50,
-    "category": "Transport",
-    "date": "2026-06-03",
-    "note": "Train pass"
-  }
-  ```
-- **Response** (`201 Created`):
-  ```json
-  {
-    "id": "4e723da5-8cf1-45bc-9c2b-2872bc0e19a4",
-    "amount": 1250.50,
-    "category": "Transport",
-    "date": "2026-06-03",
-    "note": "Train pass"
-  }
-  ```
-
-#### 3. Edit Expense
-- **Endpoint**: `PUT /expenses/:id`
-- **Request Body**:
-  ```json
-  {
-    "amount": 1300.00,
-    "category": "Transport",
-    "date": "2026-06-03",
-    "note": "Train pass (Updated price)"
-  }
-  ```
-- **Response** (`200 OK`):
-  ```json
-  {
-    "id": "4e723da5-8cf1-45bc-9c2b-2872bc0e19a4",
-    "amount": 1300.00,
-    "category": "Transport",
-    "date": "2026-06-03",
-    "note": "Train pass (Updated price)"
-  }
-  ```
-
-#### 4. Delete Expense
-- **Endpoint**: `DELETE /expenses/:id`
-- **Response** (`200 OK`):
-  ```json
-  {
-    "success": true
-  }
-  ```
-
----
-
-### Budgets API
-
-#### 1. Get Budgets
-- **Endpoint**: `GET /budgets`
-- **Description**: Returns key-value pairs representing monthly budgets assigned to categories.
-- **Response** (`200 OK`):
-  ```json
-  {
-    "Food": 5000,
-    "Transport": 3000,
-    "Bills": 15000,
-    "Entertainment": 2000,
-    "Other": 0
-  }
-  ```
-
-#### 2. Update Category Budget
-- **Endpoint**: `POST /budgets`
-- **Request Body**:
-  ```json
-  {
-    "category": "Food",
-    "amount": 6500
-  }
-  ```
-- **Response** (`200 OK`):
-  ```json
-  {
-    "Food": 6500,
-    "Transport": 3000,
-    "Bills": 15000,
-    "Entertainment": 2000,
-    "Other": 0
-  }
-  ```
-
----
-
-## 7. How to Run Locally
-
-### Prerequisites
-Make sure you have [Node.js](https://nodejs.org/) installed (LTS version is recommended).
-
-### 1. Install Dependencies
-You can install packages for the root, frontend, and backend with a single command from the project root:
 ```bash
-npm run install:all
+cd backend
+
+npm install
+
+npm start
 ```
-*(Uses `--legacy-peer-deps` on the frontend workspace to bypass conflicts between React 19's peer requirements and some third-party packages like Recharts).*
 
-### 2. Run in Development Mode
-Start both backend and frontend development servers concurrently:
+Backend will run on:
+
+```txt
+http://localhost:5000
+```
+
+## Start Frontend
+
+Open another terminal:
+
 ```bash
+cd frontend
+
+npm install
+
 npm run dev
 ```
-- **Frontend** will be hosted on: `http://localhost:5173`
-- **Backend API** will run on: `http://localhost:5000`
+
+Frontend will run on:
+
+```txt
+http://localhost:5173
+```
 
 ---
 
-## 8. Live Demo Links
-- **Frontend Live (Production Build)**: `[URL Placeholder]`
-- **Backend API Endpoint**: `[URL Placeholder]`
+# API Documentation
+
+## Get All Expenses
+
+### Request
+
+```http
+GET /api/expenses
+```
+
+### Response
+
+```json
+[
+  {
+    "id": "uuid",
+    "amount": 500,
+    "category": "Food",
+    "date": "2026-06-05",
+    "note": "Dinner"
+  }
+]
+```
 
 ---
 
-## 9. Next Steps
-If given more time, I would expand the application to include:
-1. **Multi-User Authentication**: Incorporate JWT or session-based cookies and connect a MongoDB/PostgreSQL database to store unique user records.
-2. **Interactive Date Range Slider**: Add a slider for filtering dates more fluidly.
-3. **Budget Progress Estimators**: Use historical monthly averages to warn users if their current rate of spending is on track to exceed their budget limit before the end of the month.
-4. **Data Imports**: Support uploading/parsing banking CSV statements to auto-categorize and batch-add transactions.
+## Create Expense
+
+### Request
+
+```http
+POST /api/expenses
+```
+
+### Body
+
+```json
+{
+  "amount": 500,
+  "category": "Food",
+  "date": "2026-06-05",
+  "note": "Dinner"
+}
+```
 
 ---
 
-## 10. Development Notes & AI Declaration
-In alignment with professional transparency guidelines, I would like to declare that this project was built with the assistance of an agentic AI coder (specifically Google's **Gemini 3.5 Flash** models). 
+## Update Expense
 
-The AI was used to:
-- Scaffold the initial Vite and React template project structures.
+### Request
 
-- Implement standard boilerplates like the Express configuration and basic React component architectures.
+```http
+PUT /api/expenses/:id
+```
 
-All core design patterns, validations, database layer choices (atomic JSON file writing), folder splits, and business logics were designed, reviewed, and finalized by me to ensure high security, data reliability, and performance.
+### Body
+
+```json
+{
+  "amount": 650,
+  "category": "Food",
+  "date": "2026-06-05",
+  "note": "Updated Dinner"
+}
+```
+
+---
+
+## Delete Expense
+
+### Request
+
+```http
+DELETE /api/expenses/:id
+```
+
+---
+
+## Get Budgets
+
+### Request
+
+```http
+GET /api/budgets
+```
+
+---
+
+## Update Budget
+
+### Request
+
+```http
+POST /api/budgets
+```
+
+### Body
+
+```json
+{
+  "category": "Food",
+  "amount": 5000
+}
+```
+
+---
+
+# Project Structure
+
+```txt
+StudioGraphene_expensetracker
+│
+├── backend
+│   ├── controllers
+│   ├── routes
+│   ├── services
+│   ├── utils
+│   ├── data
+│   │   ├── expenses.json
+│   │   └── budgets.json
+│   ├── server.js
+│   └── package.json
+│
+├── frontend
+│   ├── public
+│   ├── src
+│   │   ├── components
+│   │   ├── assets
+│   │   ├── utils
+│   │   ├── App.jsx
+│   │   ├── App.css
+│   │   └── main.jsx
+│   ├── index.html
+│   └── package.json
+│
+└── README.md
+```
+
+---
+
+# Design Decisions
+
+The assignment explicitly listed JSON-file persistence as a bonus option. Therefore, I chose a JSON-based persistence layer instead of introducing a database. This approach keeps the application lightweight, easy to run locally, and focused on demonstrating API design, state management, filtering, aggregation, and frontend-backend integration.
+
+---
+
+# Known Limitation
+
+When editing an expense, the form gets populated with the selected expense details. Since the form is located near the top of the page, users may need to manually scroll back up before making changes and saving them. If I had more time, I would automatically scroll the user to the edit form when they click the edit button.
+
+---
+
+# Next Steps
+
+If I continue working on this project, I would like to add:
+
+* User authentication
+* Multiple user accounts
+* Database integration using PostgreSQL or MongoDB
+* Recurring expenses
+* Monthly PDF reports
+* Dark mode
+* Better mobile responsiveness
+* Automated tests
+* Expense forecasting and trends
+* Auto-scroll to the edit form during updates
+
+---
+
+# Assignment Requirements Coverage
+
+### Must Have
+
+* Add expenses
+* View expenses
+* Edit expenses
+* Delete expenses
+* Category filtering
+* Date range filtering
+* Monthly spending summary
+* Category-wise summary
+* Highest expense tracking
+
+### Should Have
+
+* Charts
+* Currency formatting
+* Form validation
+
+### Nice to Have
+
+* CSV export
+* Budget tracking
+* Budget alerts
+* JSON file persistence
+
+All required features and bonus features mentioned in the assignment have been implemented and deployed.
